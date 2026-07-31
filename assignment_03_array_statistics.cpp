@@ -42,3 +42,71 @@
 #include <iostream>
 using namespace std;
 
+#include <iostream>
+using namespace std;
+
+// Function to calculate the sum of array elements
+int calculateSum(const int arr[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; ++i) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+// Function to calculate the average of array elements
+double calculateAverage(const int arr[], int size) {
+    int sum = calculateSum(arr, size);
+    return static_cast<double>(sum) / size;
+}
+
+// Function to find the maximum value in the array
+int findMax(const int arr[], int size) {
+    int maxVal = arr[0];
+    for (int i = 1; i < size; ++i) {
+        if (arr[i] > maxVal) {
+            maxVal = arr[i];
+        }
+    }
+    return maxVal;
+}
+
+// Function to find the minimum value in the array
+int findMin(const int arr[], int size) {
+    int minVal = arr[0];
+    for (int i = 1; i < size; ++i) {
+        if (arr[i] < minVal) {
+            minVal = arr[i];
+        }
+    }
+    return minVal;
+}
+
+int main() {
+    int count;
+
+    cout << "How many numbers? ";
+    if (!(cin >> count) || count <= 0) {
+        cout << "Error: Number of elements must be a positive integer." << endl;
+        return 1;
+    }
+
+    // Dynamically allocate array based on user input
+    int* numbers = new int[count];
+
+    for (int i = 0; i < count; ++i) {
+        cout << "Enter number " << (i + 1) << ": ";
+        cin >> numbers[i];
+    }
+
+    cout << "\nResults:" << endl;
+    cout << "Sum:     " << calculateSum(numbers, count) << endl;
+    cout << "Average: " << calculateAverage(numbers, count) << endl;
+    cout << "Maximum: " << findMax(numbers, count) << endl;
+    cout << "Minimum: " << findMin(numbers, count) << endl;
+
+    // Free memory
+    delete[] numbers;
+
+    return 0;
+}
