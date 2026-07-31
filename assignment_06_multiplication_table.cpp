@@ -56,4 +56,61 @@
 
 #include <iostream>
 using namespace std;
+#include <iostream>
+#include <iomanip>
+using namespace std;
 
+// PART A — Print the multiplication table for a single number from 1 to 12
+void printSingleTable(int num) {
+    cout << "Multiplication Table for " << num << ":" << endl;
+    for (int i = 1; i <= 12; ++i) {
+        cout << setw(2) << num << "  x " 
+             << setw(2) << i << "  = " 
+             << setw(4) << num * i << endl;
+    }
+}
+
+// PART B — Print multiplication tables for all numbers from 1 to N
+void printMultipleTables(int n) {
+    if (n <= 0) {
+        cout << "Error: N must be a positive integer." << endl;
+        return;
+    }
+
+    for (int i = 1; i <= n; ++i) {
+        printSingleTable(i);
+        if (i < n) {
+            cout << "---------------------------" << endl;
+        }
+    }
+}
+
+int main() {
+    // -------------------------------------------------------------------------
+    // PART A: Single Table
+    // -------------------------------------------------------------------------
+    cout << "=== PART A: SINGLE TABLE ===" << endl;
+    int singleNum;
+    cout << "Enter a number: ";
+    if (cin >> singleNum) {
+        printSingleTable(singleNum);
+    }
+
+    cout << endl;
+
+    // -------------------------------------------------------------------------
+    // PART B: Tables from 1 to N
+    // -------------------------------------------------------------------------
+    cout << "=== PART B: TABLES FROM 1 TO N ===" << endl;
+    int limit;
+    cout << "Enter N (1 to N): ";
+    if (cin >> limit) {
+        if (limit <= 0) {
+            cout << "Error: N must be a positive integer." << endl;
+        } else {
+            printMultipleTables(limit);
+        }
+    }
+
+    return 0;
+}
